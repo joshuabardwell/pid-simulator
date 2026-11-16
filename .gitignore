@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.DS_Store
+
+# Local working notes and copies of the live page: not for the public repo
+TODO.md
+.session-lock
+original/
+.claude/settings.local.json
