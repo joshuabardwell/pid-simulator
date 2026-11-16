@@ -18,8 +18,10 @@ A host page embeds the app with:
 
 ```html
 <div id="pid-sim-root"></div>
-<script src="https://joshuabardwell.github.io/pid-simulator/pid-simulator.js"></script>
+<script async src="https://joshuabardwell.github.io/pid-simulator/pid-simulator.js"></script>
 ```
+
+`async` keeps the rest of the host page loading if GitHub Pages is slow or unreachable.
 
 The script fills the `pid-sim-root` element from its top edge to the bottom of the viewport
 (minimum 600 px). The build that is running is readable from the element's `data-pid-sim-build`
