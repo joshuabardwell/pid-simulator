@@ -11,6 +11,7 @@ const ROOT_ID = "pid-sim-root";
 const CSS = `
 :where(#${ROOT_ID}, #${ROOT_ID} *) { margin: 0; padding: 0; box-sizing: border-box; }
 #${ROOT_ID} { width: 100%; height: var(--pid-sim-root-height, 100dvh); min-height: 600px; display: block; }
+#${ROOT_ID}[data-pid-sim-layout="compact"] { height: auto; min-height: 0; }
 `;
 
 // Fill from the top of the container to the bottom of the viewport.
@@ -30,7 +31,10 @@ function start() {
   style.textContent = CSS;
   document.head.appendChild(style);
   updateRootHeight();
-  createRoot(root).render(React.createElement(PIDDemo));
+  // On a narrow container the app stacks its panels and reports "compact"; the rule above then
+  // lets the container be as tall as the content instead of filling the viewport.
+  const onLayoutChange = (layout) => { root.dataset.pidSimLayout = layout; };
+  createRoot(root).render(React.createElement(PIDDemo, { onLayoutChange }));
 }
 
 window.addEventListener("DOMContentLoaded", updateRootHeight);
