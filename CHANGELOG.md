@@ -2,6 +2,17 @@
 
 Newest first.
 
+## 2026-11-18
+- Pushed review items 1 to 3 as 6734ae5 and checked build 6734ae5 on the staging page. At
+  1440x900 the app container and sidebar text are where they were and the step chart reads
+  646 ms / 15.6% / 8.02 s / 0.61. At 375x812 the phone layout is used, nothing sits outside the
+  app and the page does not scroll sideways.
+- The phone layout now sets its own `line-height: normal`. The WordPress theme's line-height of
+  1.7 was inherited by the app, which made its text rows taller than on the standalone page:
+  on staging the app was 1154 px tall instead of about 1045 and the scope plot ran 6 px past the
+  bottom of its box. The desktop layout still inherits the theme's line-height, so its positions
+  do not change.
+
 ## 2026-11-17
 - Delay now applies all the time. The loop used to restart on every setpoint change and empty
   its delay buffer, so delay was zero while the setpoint moved and for a few seconds after. The
